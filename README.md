@@ -5,7 +5,7 @@ Official PHP SDK for [AuthFI](https://authfi.io) — the identity control plane.
 ## Install
 
 ```bash
-composer require queflyhq/authfi
+composer require authfi/authfi
 ```
 
 ## Quick Start (Laravel)
