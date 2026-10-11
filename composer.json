@@ -1,5 +1,5 @@
 {
-  "name": "queflyhq/authfi",
+  "name": "authfi/authfi",
   "description": "AuthFI PHP SDK — JWT validation, RBAC middleware, permission auto-sync",
   "type": "library",
   "license": "Apache-2.0",
