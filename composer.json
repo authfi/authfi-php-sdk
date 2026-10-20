@@ -1,6 +1,6 @@
 {
   "name": "authfi/authfi",
-  "description": "AuthFI PHP SDK — JWT validation, RBAC middleware, permission auto-sync",
+  "description": "AuthFI PHP SDK — access token verification, RBAC checks, permission sync",
   "type": "library",
   "license": "Apache-2.0",
   "autoload": {
@@ -8,6 +8,10 @@
   },
   "require": {
     "php": ">=8.1",
-    "firebase/php-jwt": "^6.10"
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-openssl": "*",
+    "ext-sodium": "*",
+    "firebase/php-jwt": "^7.0"
   }
 }
