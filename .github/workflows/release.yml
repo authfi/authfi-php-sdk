@@ -33,7 +33,7 @@ jobs:
           git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "::error::$TAG is not on main"; exit 1; }
           v="${TAG#v}"
           grep -q "const VERSION = '$v';" AuthFI.php || { echo "::error::AuthFI::VERSION is not $v"; exit 1; }
-          grep -Eq "^## \[?${v//./\.}\]?( |$)" CHANGELOG.md || { echo "::error::CHANGELOG.md has no section for $v"; exit 1; }
+          grep -Eq "^## \[?${v//./\\.}\]?( |$)" CHANGELOG.md || { echo "::error::CHANGELOG.md has no section for $v"; exit 1; }
           if grep -q '"version"' composer.json; then echo "::error::composer.json must not set a version: Packagist reads the tag"; exit 1; fi
       # The PHP checks run in the same image the CI uses.
       - name: Validate the manifest and run the tests on PHP 8.1
