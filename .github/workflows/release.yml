@@ -64,7 +64,7 @@ jobs:
         run: |
           v="${TAG#v}"
           mkdir -p out
-          git archive --format=zip --prefix="authfi-php-sdk-$v/" -o "out/authfi-php-sdk-$v.zip" "$TAG"
+          git archive --format=zip --prefix="authfi-php-sdk-$v/" -o "out/authfi-php-sdk-$v.zip" HEAD
           awk -v v="$v" 'BEGIN{a="## "v; b="## ["v"]"} $0==a || index($0,a" ")==1 || $0==b || index($0,b" ")==1 {f=1;next} /^## /{f=0} f' CHANGELOG.md > out/notes.md
           test -s out/notes.md || { echo "::error::no release notes for $v"; exit 1; }
       - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
