@@ -35,14 +35,16 @@ jobs:
           grep -q "const VERSION = '$v';" AuthFI.php || { echo "::error::AuthFI::VERSION is not $v"; exit 1; }
           grep -Eq "^## \[?${v//./\.}\]?( |$)" CHANGELOG.md || { echo "::error::CHANGELOG.md has no section for $v"; exit 1; }
           if grep -q '"version"' composer.json; then echo "::error::composer.json must not set a version: Packagist reads the tag"; exit 1; fi
-      - uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
-        with:
-          php-version: '8.1'
-          extensions: curl, json, openssl, sodium
-          tools: composer:v2
-      - run: composer validate --strict
-      - run: composer install --no-interaction --no-progress
-      - run: php test_authfi.php
+      # The PHP checks run in the same image the CI uses.
+      - name: Validate the manifest and run the tests on PHP 8.1
+        run: |
+          docker run --rm -v "$PWD":/w -w /w php:8.1-cli bash -c '
+            set -e
+            apt-get update -qq && apt-get install -y -qq unzip git >/dev/null
+            curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+            composer validate --strict
+            composer install --no-interaction --no-progress
+            php test_authfi.php'
 
   release:
     needs: verify
