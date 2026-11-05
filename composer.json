@@ -2,6 +2,12 @@
   "name": "authfi/authfi",
   "description": "AuthFI PHP SDK — access token verification, RBAC checks, permission sync",
   "type": "library",
+  "homepage": "https://authfi.io",
+  "keywords": ["authfi", "oauth", "oidc", "jwt", "access-token", "ai-agents"],
+  "support": {
+    "source": "https://github.com/authfi/authfi-php-sdk",
+    "issues": "https://github.com/authfi/authfi-php-sdk/issues"
+  },
   "license": "Apache-2.0",
   "autoload": {
     "classmap": ["AuthFI.php"]
