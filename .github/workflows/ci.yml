@@ -18,6 +18,8 @@ jobs:
         run: |
           apt-get update -qq && apt-get install -y -qq unzip git >/dev/null
           curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - run: composer install --no-interaction --no-progress
       - run: php test_authfi.php
